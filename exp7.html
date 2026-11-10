@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>Year Calendar</title>
+<style>
+body{
+font-family: Arial, sans-serif;
+background: #F5F0FF;
+text-align: center;
+padding: 20px;
+}
+h1,h2,h3{
+color: #7041A6;
+}
+.calendar {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 15px;
+}
+.month {
+background: white;
+padding: 10px;
+border-radius: 10px;
+box-shadow: 0 2px 6px #D8C8EF;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+}
+th {
+background: #8E63C7;
+color: white;
+}
+th, td {
+padding: 7px;
+border: 1px solid #E5D9F5;
+}
+</style>
+</head>
+<body>
+<h1>Year Calendar</h1>
+<script>
+    var year=Number(prompt("Enter Year:"));
+    document.write("<h2>" + year + "</h2>");
+    document.write("<div class='calendar'>");
+    var months=["January", "February", "March","April", "May", "June", "July", "August","September", "October", "November", "December"];
+    var days=["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    for (var m=0;m<12;m++) {
+        document.write("<div class='month'><h3>" + months[m] + "</h3><table><tr>");
+        for (var d of days)
+            document.write("<th>" + d + "</th>");
+        document.write("</tr><tr>");
+        var first = new Date(year, m, 1).getDay();
+        var total = new Date(year, m + 1, 0).getDate();
+        for (var i = 0; i < first; i++)
+            document.write("<td></td>");
+        for (var date = 1; date <= total; date++) {
+            document.write("<td>" + date + "</td>");
+            if ((first + date) % 7 == 0)
+                document.write("</tr><tr>");
+        }
+        document.write("</tr></table></div>");
+    }
+    document.write("</div>");
+</script>
+</body>
+</html>
