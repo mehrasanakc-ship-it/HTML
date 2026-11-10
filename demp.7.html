@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Year Calendar</title>
+<style>
+h2 {
+text-align: center;
+}
+.calendar {
+width: 100%;
+border-spacing: 20px;
+ }
+.calendar {
+ width: 100%;
+vertical-align: top;
+}
+table.month {
+ width: 100%;
+border-collapse: collapse;
+text-align: center;
+ }
+th, td {
+padding: 8px;
+text-align: center;
+ }
+</style>
+</head>
+<body>
+<h1><center>Year Calendar</center></h1>
+<script>
+var year;
+do {
+var input = prompt("Enter Year (1000-9999):");
+if (input == null) {
+document.write("Program cancelled");
+throw new Error("Program cancelled");
+}
+input = input.trim();
+year = Number(input);
+if (input == "" || !Number.isInteger(year) ||
+year < 1000 || year > 9999) {
+ alert("Enter a valid year between 1000 and 9999");
+}
+} while (input == "" || !Number.isInteger(year) ||
+ year < 1000 || year > 9999);
+document.write("<h2>" + year + "</h2>");
+if ((year % 4 == 0 && year % 100 != 0) ||
+year % 400 == 0) {
+document.write("<h3 align='center'>Leap Year</h3>");
+ }
+  else {
+document.write("<h3 align='center'>Not a Leap Year</h3>");
+ }
+var months = ["January", "February", "March", "April","May", "June", "July", "August","September", "October", "November", "December"];
+var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+document.write("<table class='calendar'>");
+for (var m = 0; m < 12; m += 2) {
+document.write("<tr>");
+for (var j = m; j < m + 2; j++) {
+document.write("<td>");
+document.write("<h3 align='center'>" + months[j] + "</h3>");
+document.write("<table class='month' border='1'>");
+document.write("<tr>");
+for (var d of days) {
+document.write("<th bgcolor='lightblue'>" + d + "</th>");
+}
+document.write("</tr><tr>");
+var first = new Date(year, j, 1).getDay();
+var total = new Date(year, j + 1, 0).getDate();
+for (var i = 0; i < first; i++) {
+document.write("<td></td>");
+}
+for (var date = 1; date <= total; date++) {
+document.write("<td bgcolor='lightyellow'>" + date + "</td>");
+if ((first + date) % 7 == 0 && date != total) {
+document.write("</tr><tr>");
+ }
+ }
+var remaining = (7 - ((first + total) % 7)) % 7;
+for (var k = 0; k < remaining; k++) {
+ document.write("<td></td>");
+}
+document.write("</tr>");
+document.write("</table>");
+document.write("</td>");
+}
+document.write("</tr>");
+}
+document.write("</table>");
+</script>
+</body>
+</html>
+
