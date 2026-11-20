@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>exp 9</title>
+</head>
+<body>
+<center>
+    <h2>Change Background Color</h2>
+    <button onclick="changeColor()">Click Me</button>
+</center>
+<script>
+    let colors = ["red", "skyblue", "lightgreen", "yellow", "lightpink"];
+    let i = 0;
+function changeColor() {
+        document.body.style.backgroundColor = colors[i];
+        i++;
+if (i == 5) {
+            i = 0;
+        }
+    }
+</script>
+</body>
+</html>
